@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agrinho 2026 — Agro Norte Futuro Sustentável</title>
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#0a1a0d;--bg2:#0f2513;
+  --text:#e8f5e3;--muted:#9dc08b;
+  --green:#4ade80;--green-dark:#22782c;
+  --border:rgba(255,255,255,0.08);
+  --radius:1.25rem;
+}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#2d6a35;border-radius:3px}
+
+/* ── NAV ─────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,26,13,0.85);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;height:62px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{display:flex;align-items:center;gap:.6rem;font-size:1.1rem;font-weight:700;color:var(--green);letter-spacing:-.02em;text-decoration:none}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+@media(max-width:600px){.nav-links{display:none}}
+
+/* ── HERO ────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:6rem 2rem 4rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%,rgba(34,120,44,.25) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 80%,rgba(20,80,30,.18) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 30% at 10% 70%,rgba(16,60,22,.2) 0%,transparent 60%);
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(34,120,44,.15);border:1px solid rgba(110,230,123,.3);
+  color:var(--green);font-size:.8rem;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;padding:.35rem 1rem;border-radius:99px;
+  margin-bottom:1.5rem;position:relative;z-index:1;
+}
+.hero h1{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;position:relative;z-index:1;max-width:900px}
+.hero h1 span{color:var(--green)}
+.hero p{margin-top:1.5rem;max-width:620px;color:var(--muted);font-size:clamp(1rem,2vw,1.15rem);position:relative;z-index:1}
+.hero-cta{margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:1}
+.btn-primary{background:#22782c;color:#fff;border:none;cursor:pointer;padding:.8rem 2rem;border-radius:99px;font-size:1rem;font-weight:600;transition:transform .2s,background .2s;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:#2a9436;transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;padding:.8rem 2rem;border-radius:99px;font-size:1rem;transition:border-color .2s,background .2s;text-decoration:none;display:inline-block}
+.btn-outline:hover{border-color:var(--green);background:rgba(110,230,123,.05)}
+.hero-scroll{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  z-index:1;display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  color:var(--muted);font-size:.78rem;
+  animation:bounce 2s ease-in-out infinite;
+}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* ── SECTIONS ────────────────────────────────────────────── */
+.section{padding:5rem 2rem;max-width:1200px;margin:0 auto}
+.section-label{display:inline-flex;align-items:center;gap:.5rem;color:var(--green);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.section-label::before{content:'';width:18px;height:2px;background:var(--green);border-radius:2px}
+.section-title{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.section-sub{margin-top:.75rem;color:var(--muted);max-width:560px;font-size:1.05rem}
+
+/* ── ABOUT ───────────────────────────────────────────────── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2rem}}
+.about-text p{color:var(--muted);font-size:1rem;margin-top:1rem;line-height:1.8}
+.pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.pill{padding:.35rem .9rem;border-radius:99px;font-size:.82rem;font-weight:600;background:rgba(110,230,123,.1);color:var(--green);border:1px solid rgba(110,230,123,.2)}
+.about-visual{display:flex;align-items:center;justify-content:center}
+.about-visual svg{width:100%;max-width:400px;height:auto}
+
+/* ── STATS ───────────────────────────────────────────────── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:3rem}
+.stat-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem 1.5rem;text-align:center;transition:transform .3s,border-color .3s}
+.stat-card:hover{transform:translateY(-4px);border-color:rgba(110,230,123,.3)}
+.stat-num{font-size:2.6rem;font-weight:900;letter-spacing:-.04em;background:linear-gradient(135deg,#6ee67b,#3db848);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{color:var(--muted);font-size:.9rem;margin-top:.35rem}
+
+/* ── BLOCKS ──────────────────────────────────────────────── */
+.blocks-intro{margin-top:1rem;color:var(--muted);font-size:1rem}
+.blocks-intro strong{color:var(--green)}
+.blocks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:3rem}
+
+.block{
+  border-radius:var(--radius);border:2px solid transparent;cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s,border-color .35s,background .35s;
+  background:rgba(255,255,255,.04);
+  user-select:none;outline:none;
+}
+.block:hover,.block:focus{transform:scale(1.04)}
+.block.open{grid-column:1/-1;transform:scale(1) !important}
+
+.block-inner{padding:2rem}
+.block-header{display:flex;align-items:flex-start;gap:1rem}
+.block-icon{flex-shrink:0;width:72px;height:72px;border-radius:1rem;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06)}
+.block-icon svg{width:44px;height:44px}
+.block-tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:.3rem}
+.block-title{font-size:1.2rem;font-weight:700;line-height:1.3}
+.block-preview{color:var(--muted);font-size:.9rem;margin-top:.75rem}
+.block-hint{margin-top:1.25rem;font-size:.8rem;opacity:.5;display:flex;align-items:center;gap:.4rem}
+.block-hint .arrow{transition:transform .3s;display:inline-block}
+.block.open .block-hint .arrow{transform:rotate(90deg)}
+
+/* Expanded */
+.block-content{max-height:0;overflow:hidden;transition:max-height .55s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
+.block.open .block-content{max-height:1400px;opacity:1}
+.block-divider{height:1px;background:var(--border);margin:1.5rem 0}
+.block-headline{font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;line-height:1.4}
+.block-body{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+@media(max-width:640px){.block-body{grid-template-columns:1fr}}
+.block-text p{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:1rem}
+.block-stats{display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
+.bstat{display:flex;align-items:center;justify-content:space-between}
+.bstat-label{font-size:.85rem;color:var(--muted)}
+.bstat-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;margin:0 .75rem;overflow:hidden}
+.bstat-bar{height:100%;border-radius:3px;width:0;transition:width .8s cubic-bezier(.4,0,.2,1)}
+.bstat-val{font-size:.85rem;font-weight:700;min-width:40px;text-align:right}
+.block-scene{border-radius:.75rem;overflow:hidden;background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.block-scene svg{width:100%;height:auto;max-height:220px}
+.solutions-title{font-size:.9rem;font-weight:700;margin:1.25rem 0 .75rem}
+.solutions{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.solutions li{display:flex;align-items:flex-start;gap:.6rem;font-size:.9rem;color:var(--muted)}
+.solutions li .chk{font-weight:700;flex-shrink:0;margin-top:2px}
+
+/* ── TIMELINE ────────────────────────────────────────────── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem;align-items:start}
+@media(max-width:768px){.two-col{grid-template-columns:1fr;gap:2rem}}
+.timeline{display:flex;flex-direction:column;gap:0}
+.t-item{display:flex;gap:1.5rem;position:relative;padding-bottom:2.5rem}
+.t-item:last-child{padding-bottom:0}
+.t-line{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.t-dot{width:14px;height:14px;border-radius:50%;background:#22782c;border:2px solid var(--green);flex-shrink:0;margin-top:4px;box-shadow:0 0 0 4px rgba(110,230,123,.15)}
+.t-connector{width:2px;flex:1;background:linear-gradient(to bottom,#22782c,transparent);margin-top:6px}
+.t-item:last-child .t-connector{display:none}
+.t-year{font-size:.78rem;color:var(--green);font-weight:700}
+.t-content h4{font-size:1rem;font-weight:700}
+.t-content p{color:var(--muted);font-size:.9rem;margin-top:.3rem}
+.chart-wrap{position:sticky;top:80px}
+.chart-wrap svg{width:100%;height:auto;border-radius:1rem;border:1px solid var(--border)}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+footer{border-top:1px solid var(--border);padding:3rem 2rem;text-align:center;color:var(--muted);font-size:.88rem}
+footer strong{color:var(--green)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path d="M11 2C11 2 4 9 4 13C4 16.866 7.134 20 11 20C14.866 20 18 16.866 18 13C18 9 11 2 11 2Z" fill="#4ade80" opacity=".9"/>
+      <path d="M11 20V13" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    Agrinho 2026
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#dados">Dados</a></li>
+    <li><a href="#blocos">Soluções</a></li>
+    <li><a href="#acoes">Ações</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-badge">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="4"/></svg>
+    Agrinho 2026 · Região Norte
+  </div>
+  <h1>Agro Norte<br><span>Futuro Sustentável</span></h1>
+  <p>Equilíbrio entre produção agrícola e meio ambiente: explorando soluções inovadoras para construir um agronegócio que alimenta o Brasil sem destruir o planeta.</p>
+  <div class="hero-cta">
+    <a href="#blocos" class="btn-primary">Explorar Soluções</a>
+    <a href="#sobre" class="btn-outline">Saiba Mais</a>
+  </div>
+  <div class="hero-scroll">
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
+      <rect x="1" y="1" width="14" height="18" rx="7" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="8" cy="7" r="2" fill="currentColor"/>
+    </svg>
+    Role para explorar
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre" class="section">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">Sobre o Tema</div>
+      <h2 class="section-title">Por que o equilíbrio entre produção e natureza é urgente?</h2>
+      <p>O Brasil é o maior exportador agrícola do mundo, responsável por alimentar mais de 1 bilhão de pessoas. Mas esse modelo de produção, se não repensado, pode comprometer os recursos naturais das próximas gerações.</p>
+      <p>A Região Norte possui condições únicas: a maior floresta tropical do mundo, recursos hídricos abundantes e um potencial agrícola imenso em áreas já degradadas. A grande questão de nosso tempo é: como usar tudo isso de forma inteligente?</p>
+      <div class="pills">
+        <span class="pill">Irrigação Inteligente</span>
+        <span class="pill">Energia Solar</span>
+        <span class="pill">Biodiversidade</span>
+        <span class="pill">Solo Vivo</span>
+        <span class="pill">Economia Circular</span>
+        <span class="pill">Reflorestamento</span>
+      </div>
+    </div>
+    <div class="about-visual">
+      <svg viewBox="0 0 360 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="180" cy="160" r="130" fill="rgba(74,222,128,0.05)" stroke="rgba(74,222,128,0.15)" stroke-width="1"/>
+        <circle cx="180" cy="160" r="100" fill="rgba(74,222,128,0.04)" stroke="rgba(74,222,128,0.12)" stroke-width="1"/>
+        <rect x="100" y="170" width="160" height="80" rx="4" fill="rgba(74,222,128,0.12)" stroke="rgba(74,222,128,0.3)" stroke-width="1.5"/>
+        <line x1="110" y1="170" x2="110" y2="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <path d="M110 162 C102 156 100 148 106 144 C110 152 112 158 110 162Z" fill="#4ade80" opacity=".4"/>
+        <path d="M110 160 C118 154 120 146 114 142 C110 150 108 156 110 160Z" fill="#4ade80" opacity=".3"/>
+        <line x1="130" y1="170" x2="130" y2="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <path d="M130 162 C122 156 120 148 126 144 C130 152 132 158 130 162Z" fill="#4ade80" opacity=".4"/>
+        <path d="M130 160 C138 154 140 146 134 142 C130 150 128 156 130 160Z" fill="#4ade80" opacity=".3"/>
+        <line x1="150" y1="170" x2="150" y2="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <path d="M150 162 C142 156 140 148 146 144 C150 152 152 158 150 162Z" fill="#4ade80" opacity=".4"/>
+        <line x1="170" y1="170" x2="170" y2="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <path d="M170 160 C178 154 180 146 174 142 C170 150 168 156 170 160Z" fill="#4ade80" opacity=".3"/>
+        <line x1="190" y1="170" x2="190" y2="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <path d="M190 162 C182 156 180 148 186 144 C190 152 192 158 190 162Z" fill="#4ade80" opacity=".4"/>
+        <line x1="210" y1="170" x2="210" y2="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <path d="M210 160 C218 154 220 146 214 142 C210 150 208 156 210 160Z" fill="#4ade80" opacity=".3"/>
+        <line x1="230" y1="170" x2="230" y2="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <path d="M230 162 C222 156 220 148 226 144 C230 152 232 158 230 162Z" fill="#4ade80" opacity=".4"/>
+        <line x1="250" y1="170" x2="250" y2="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <path d="M250 160 C258 154 260 146 254 142 C250 150 248 156 250 160Z" fill="#4ade80" opacity=".3"/>
+        <circle cx="180" cy="80" r="28" fill="rgba(251,191,36,0.15)"/>
+        <circle cx="180" cy="80" r="18" fill="rgba(251,191,36,0.3)"/>
+        <line x1="180" y1="56" x2="180" y2="48" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <line x1="180" y1="112" x2="180" y2="104" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <line x1="156" y1="80" x2="148" y2="80" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <line x1="212" y1="80" x2="204" y2="80" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <line x1="163" y1="63" x2="157" y2="57" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <line x1="197" y1="97" x2="203" y2="103" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <line x1="163" y1="97" x2="157" y2="103" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <line x1="197" y1="63" x2="203" y2="57" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <path d="M90 220 Q180 210 270 220 Q270 240 180 245 Q90 240 90 220Z" fill="rgba(56,189,248,0.2)" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+        <path d="M110 228 Q150 224 190 228 Q220 232 250 228" stroke="rgba(56,189,248,0.5)" stroke-width="1.5" fill="none"/>
+        <polygon points="80,162 96,190 64,190" fill="#22c55e" opacity=".45"/>
+        <polygon points="80,178 100,200 60,200" fill="#16a34a" opacity=".35"/>
+        <rect x="77" y="200" width="6" height="12" fill="#166534" opacity=".4"/>
+        <polygon points="280,157 296,185 264,185" fill="#22c55e" opacity=".45"/>
+        <polygon points="280,173 300,195 260,195" fill="#16a34a" opacity=".35"/>
+        <rect x="277" y="195" width="6" height="12" fill="#166534" opacity=".4"/>
+        <text x="96" y="148" fill="rgba(74,222,128,0.5)" font-size="9">CO₂↓</text>
+        <text x="246" y="148" fill="rgba(74,222,128,0.5)" font-size="9">CO₂↓</text>
+        <circle cx="180" cy="160" r="22" fill="rgba(74,222,128,0.1)" stroke="rgba(74,222,128,0.3)" stroke-width="1.5"/>
+        <text x="180" y="157" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="bold">AGRO</text>
+        <text x="180" y="168" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="bold">VERDE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- DADOS -->
+<section id="dados" class="section">
+  <div class="section-label">Dados &amp; Impacto</div>
+  <h2 class="section-title">Números que revelam a urgência</h2>
+  <p class="section-sub">Cada porcentagem representa um desafio real — e uma oportunidade de transformação.</p>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">33%</div><div class="stat-label">do PIB brasileiro vem do agronegócio</div></div>
+    <div class="stat-card"><div class="stat-num">70%</div><div class="stat-label">da água doce é usada na agricultura</div></div>
+    <div class="stat-card"><div class="stat-num">800M t</div><div class="stat-label">de solo perdido por erosão por ano</div></div>
+    <div class="stat-card"><div class="stat-num">20%</div><div class="stat-label">da Amazônia já foi desmatada</div></div>
+    <div class="stat-card"><div class="stat-num">75%</div><div class="stat-label">das culturas dependem de polinizadores</div></div>
+    <div class="stat-card"><div class="stat-num">5,5 kWh</div><div class="stat-label">irradiação solar/m² por dia na Região Norte</div></div>
+    <div class="stat-card"><div class="stat-num">89%</div><div class="stat-label">de queda no custo de painéis solares</div></div>
+    <div class="stat-card"><div class="stat-num">R$1,8T</div><div class="stat-label">valor dos serviços ecossistêmicos ao ano</div></div>
+  </div>
+</section>
+
+<!-- BLOCOS INTERATIVOS -->
+<section id="blocos" class="section">
+  <div class="section-label">Soluções Interativas</div>
+  <h2 class="section-title">Explore os problemas e as soluções</h2>
+  <p class="blocks-intro">Passe o cursor (ou toque) para ver o bloco crescer. <strong>Clique</strong> para abrir o conteúdo completo com dados e propostas.</p>
+  <div class="blocks-grid" id="blocksGrid"></div>
+</section>
+
+<!-- AÇÕES / TIMELINE -->
+<section id="acoes" class="section">
+  <div class="section-label">Roteiro de Mudança</div>
+  <h2 class="section-title">Passos para o Agro Norte Sustentável</h2>
+  <p class="section-sub">Uma visão de como a transformação pode acontecer de forma gradual e efetiva.</p>
+  <div class="two-col">
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-line"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-content"><div class="t-year">Agora</div><h4>Diagnóstico e Mapeamento</h4><p>Mapeamento de áreas degradadas, pontos de captação hídrica e potencial solar de cada propriedade rural na Região Norte.</p></div>
+      </div>
+      <div class="t-item">
+        <div class="t-line"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-content"><div class="t-year">2 anos</div><h4>Adoção de Tecnologias de Base</h4><p>Implementação de irrigação inteligente, painéis solares em cooperativas e postos de coleta de resíduos rurais.</p></div>
+      </div>
+      <div class="t-item">
+        <div class="t-line"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-content"><div class="t-year">5 anos</div><h4>Recuperação de Ecossistemas</h4><p>Reflorestamento de APPs, implantação de corredores ecológicos e sistemas agroflorestais em 20% das propriedades.</p></div>
+      </div>
+      <div class="t-item">
+        <div class="t-line"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-content"><div class="t-year">10 anos</div><h4>Agro Carbono Neutro</h4><p>Balanço carbono neutro no setor agropecuário da Região Norte, com 60% das propriedades em transição agroecológica.</p></div>
+      </div>
+      <div class="t-item">
+        <div class="t-line"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-content"><div class="t-year">2050</div><h4>Modelo Global de Referência</h4><p>A Região Norte se consolida como modelo mundial de produção sustentável de alta performance.</p></div>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <svg viewBox="0 0 340 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="background:rgba(255,255,255,0.03)">
+        <text x="20" y="25" fill="#4ade80" font-size="11" font-weight="700">Índice de Sustentabilidade — Região Norte</text>
+        <text x="20" y="40" fill="rgba(255,255,255,0.3)" font-size="9">Projeção 2024–2050</text>
+        <rect x="30" y="300" width="30" height="40" rx="4" fill="#f87171" opacity=".7"/>
+        <rect x="80" y="280" width="30" height="60" rx="4" fill="#fb923c" opacity=".7"/>
+        <rect x="130" y="240" width="30" height="100" rx="4" fill="#fbbf24" opacity=".7"/>
+        <rect x="180" y="185" width="30" height="155" rx="4" fill="#4ade80" opacity=".7"/>
+        <rect x="230" y="130" width="30" height="210" rx="4" fill="#22c55e" opacity=".7"/>
+        <rect x="280" y="60" width="30" height="280" rx="4" fill="#16a34a" opacity=".7"/>
+        <text x="45" y="358" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9">2024</text>
+        <text x="95" y="358" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9">2026</text>
+        <text x="145" y="358" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9">2028</text>
+        <text x="195" y="358" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9">2030</text>
+        <text x="245" y="358" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9">2035</text>
+        <text x="295" y="358" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9">2050</text>
+        <line x1="20" y1="340" x2="320" y2="340" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <circle cx="30" cy="375" r="4" fill="#f87171"/>
+        <text x="40" y="378" fill="rgba(255,255,255,0.45)" font-size="8">Crítico</text>
+        <circle cx="90" cy="375" r="4" fill="#fbbf24"/>
+        <text x="100" y="378" fill="rgba(255,255,255,0.45)" font-size="8">Transição</text>
+        <circle cx="165" cy="375" r="4" fill="#22c55e"/>
+        <text x="175" y="378" fill="rgba(255,255,255,0.45)" font-size="8">Sustentável</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin:0 auto .5rem;display:block">
+    <path d="M16 2C16 2 5 13 5 19C5 25.075 10 30 16 30C22 30 27 25.075 27 19C27 13 16 2 16 2Z" fill="#22c55e" opacity=".7"/>
+    <path d="M16 30V19" stroke="#4ade80" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <p><strong>Agrinho 2026</strong> · Agro Norte Futuro Sustentável: Equilíbrio entre Produção e Meio Ambiente</p>
+  <p style="margin-top:.5rem;opacity:.5;font-size:.8rem">Projeto educacional desenvolvido para o Concurso Agrinho 2026 · Região Norte do Brasil</p>
+</footer>
+
+<script>
+/* ── DADOS DOS BLOCOS ─────────────────────────────────────── */
+const BLOCKS = [
+  {
+    tag:"Problema 01", title:"Uso Sustentável da Água", color:"#38bdf8",
+    preview:"O agronegócio consome ~70% da água doce mundial. Soluções inteligentes podem reduzir em até 50% esse desperdício.",
+    headline:"A crise hídrica no campo e como o futuro sustentável pode resolvê-la",
+    paragraphs:[
+      "A agricultura é responsável por aproximadamente 70% do consumo global de água doce. No Brasil, esse índice é ainda mais elevado em regiões como o Norte e o Nordeste, onde a irregularidade das chuvas agrava a situação. O desperdício por irrigação ineficiente atinge até 40% em sistemas convencionais.",
+      "Tecnologias como irrigação por gotejamento, sensores de umidade do solo e sistemas de captação de água da chuva já demonstraram reduções de 30% a 50% no consumo hídrico sem perda de produtividade."
+    ],
+    stats:[
+      {label:"Água usada pela agricultura",val:70,disp:"70%"},
+      {label:"Desperdício em irrigação convencional",val:40,disp:"40%"},
+      {label:"Redução com irrigação inteligente",val:50,disp:"50%"},
+      {label:"Produtores com técnicas sustentáveis",val:28,disp:"28%"},
+    ],
+    solutions:["Irrigação por gotejamento com sensores IoT","Cisternas e barragens para captação de água da chuva","Reúso de água tratada para irrigação","Mapeamento de aquíferos via satélite","Agricultura de precisão com análise de umidade do solo"],
+    iconSvg:`<svg viewBox="0 0 40 40" fill="none"><path d="M20 4C20 4 8 18 8 24C8 30.627 13.373 36 20 36C26.627 36 32 30.627 32 24C32 18 20 4 20 4Z" fill="currentColor" opacity=".85"/><path d="M14 26C14 26 13 30 18 31" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity=".6"/></svg>`,
+    sceneSvg:(c)=>`<svg viewBox="0 0 400 220" fill="none"><rect width="400" height="220" rx="12" fill="rgba(255,255,255,.03)"/><rect width="400" height="130" rx="12" fill="${c}18"/><ellipse cx="80" cy="40" rx="35" ry="18" fill="${c}20"/><ellipse cx="100" cy="32" rx="28" ry="16" fill="${c}25"/><ellipse cx="300" cy="50" rx="42" ry="20" fill="${c}18"/><ellipse cx="320" cy="40" rx="32" ry="18" fill="${c}22"/><line x1="60" y1="60" x2="56" y2="75" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity=".5"/><line x1="90" y1="60" x2="86" y2="75" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity=".5"/><line x1="120" y1="60" x2="116" y2="75" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity=".5"/><line x1="150" y1="60" x2="146" y2="75" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity=".5"/><line x1="180" y1="60" x2="176" y2="75" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity=".5"/><rect y="140" width="400" height="80" fill="${c}15"/><path d="M0 170 Q100 155 200 170 Q300 185 400 170 L400 195 Q300 210 200 195 Q100 180 0 195 Z" fill="${c}" opacity=".4"/><path d="M20 180 Q60 174 100 180 Q140 186 180 180" stroke="white" stroke-width="1.5" opacity=".4" fill="none"/><path d="M50 142 Q40 120 55 105" stroke="${c}" stroke-width="3" stroke-linecap="round" fill="none" opacity=".8"/><ellipse cx="55" cy="105" rx="12" ry="8" fill="${c}" opacity=".7" transform="rotate(-20 55 105)"/><path d="M350 140 Q360 118 345 102" stroke="${c}" stroke-width="3" stroke-linecap="round" fill="none" opacity=".8"/><ellipse cx="345" cy="102" rx="14" ry="9" fill="${c}" opacity=".7" transform="rotate(15 345 102)"/><circle cx="200" cy="80" r="28" fill="${c}" opacity=".15"/><path d="M200 58C200 58 182 76 182 84C182 93.941 190.059 102 200 102C209.941 102 218 93.941 218 84C218 76 200 58 200 58Z" fill="${c}" opacity=".7"/></svg>`
+  },
+  {
+    tag:"Problema 02", title:"Combate ao Desmatamento", color:"#4ade80",
+    preview:"O Brasil perdeu 11.568 km² de floresta amazônica em 2022. Cada hectare desmatado libera 500 toneladas de CO₂.",
+    headline:"Desmatar menos, produzir mais: como o agro norte pode liderar essa mudança",
+    paragraphs:[
+      "O desmatamento é uma das principais ameaças ambientais do Brasil. O bioma Amazônico já perdeu cerca de 20% de sua cobertura original. No entanto, estudos comprovam que é possível aumentar a produção agrícola em até 3x apenas recuperando e otimizando áreas já degradadas, sem desmatar um hectare sequer.",
+      "A região Norte possui o maior potencial de produção sustentável do país: 30 milhões de hectares de áreas degradadas aptas para recuperação. O reflorestamento garante serviços ecossistêmicos essenciais como a regulação hídrica e proteção do solo contra erosão."
+    ],
+    stats:[
+      {label:"Cobertura amazônica já perdida",val:20,disp:"20%"},
+      {label:"Área recuperável na Região Norte (M ha)",val:30,disp:"30M ha"},
+      {label:"Aumento produtivo em áreas recuperadas",val:68,disp:"3x mais"},
+      {label:"CO₂ sequestrado/ha reflorestado (t/ano)",val:85,disp:"85t/ano"},
+    ],
+    solutions:["Recuperação de Áreas de Preservação Permanente (APP)","Sistemas agroflorestais (SAFs) integrados à produção","Monitoramento em tempo real via satélites Sentinel","Certificação ambiental para produtores rurais","Pagamento por serviços ambientais (PSA) a agricultores"],
+    iconSvg:`<svg viewBox="0 0 40 40" fill="none"><polygon points="20,4 32,22 8,22" fill="currentColor" opacity=".9"/><polygon points="20,12 34,32 6,32" fill="currentColor" opacity=".7"/><rect x="17" y="32" width="6" height="7" rx="1" fill="currentColor" opacity=".85"/></svg>`,
+    sceneSvg:(c)=>`<svg viewBox="0 0 400 220" fill="none"><rect width="400" height="220" rx="12" fill="${c}10"/><polygon points="40,90 72,145 8,145" fill="${c}" opacity=".5"/><polygon points="40,110 78,160 2,160" fill="${c}" opacity=".4"/><rect x="37" y="160" width="6" height="18" fill="${c}" opacity=".45"/><polygon points="110,70 142,145 78,145" fill="${c}" opacity=".55"/><polygon points="110,90 150,160 70,160" fill="${c}" opacity=".4"/><rect x="107" y="160" width="6" height="18" fill="${c}" opacity=".45"/><polygon points="190,80 222,155 158,155" fill="${c}" opacity=".5"/><polygon points="190,100 230,165 150,165" fill="${c}" opacity=".4"/><rect x="187" y="165" width="6" height="18" fill="${c}" opacity=".45"/><polygon points="270,72 302,148 238,148" fill="${c}" opacity=".55"/><polygon points="270,92 310,162 230,162" fill="${c}" opacity=".4"/><rect x="267" y="162" width="6" height="18" fill="${c}" opacity=".45"/><polygon points="340,88 372,145 308,145" fill="${c}" opacity=".5"/><polygon points="340,108 380,160 300,160" fill="${c}" opacity=".4"/><rect x="337" y="160" width="6" height="18" fill="${c}" opacity=".45"/><circle cx="155" cy="185" r="18" fill="rgba(139,90,43,.4)"/><circle cx="155" cy="185" r="12" fill="rgba(139,90,43,.3)"/><path d="M0 190 Q200 180 400 190 L400 220 L0 220 Z" fill="${c}20"/><circle cx="340" cy="40" r="22" fill="${c}" opacity=".2"/><circle cx="340" cy="40" r="14" fill="${c}" opacity=".35"/></svg>`
+  },
+  {
+    tag:"Problema 03", title:"Energia Renovável no Campo", color:"#fbbf24",
+    preview:"O agronegócio brasileiro consome 34% da energia total do país. Fontes renováveis podem suprir toda essa demanda.",
+    headline:"Do sol e do vento: como o campo brasileiro pode se tornar autossuficiente em energia limpa",
+    paragraphs:[
+      "O setor agropecuário é responsável por 34% do consumo elétrico brasileiro. A Região Norte apresenta uma das maiores irradiações solares do planeta, com médias de 5,5 kWh/m² por dia, tornando a energia fotovoltaica extremamente viável.",
+      "Propriedades que adotaram energia solar têm reduzido suas contas em até 95%. O custo dos painéis solares caiu 89% na última década, tornando o investimento acessível a pequenos e médios produtores rurais com retorno em menos de 5 anos."
+    ],
+    stats:[
+      {label:"Consumo energético do agronegócio",val:34,disp:"34%"},
+      {label:"Redução na conta de energia com solar",val:95,disp:"95%"},
+      {label:"Queda no custo de painéis (10 anos)",val:89,disp:"89%"},
+      {label:"Propriedades rurais com energia solar",val:12,disp:"12%"},
+    ],
+    solutions:["Sistemas fotovoltaicos para irrigação e secagem de grãos","Biodigestores que geram biogás dos resíduos orgânicos","Mini-eólicas para propriedades em regiões ventosas","Cooperativas de energia solar compartilhada","Programas de financiamento para energia limpa no campo"],
+    iconSvg:`<svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="8" fill="currentColor"/><line x1="20" y1="4" x2="20" y2="9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="20" y1="31" x2="20" y2="36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="4" y1="20" x2="9" y2="20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="31" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="8.1" y1="8.1" x2="11.6" y2="11.6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="28.4" y1="28.4" x2="31.9" y2="31.9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="8.1" y1="31.9" x2="11.6" y2="28.4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="28.4" y1="11.6" x2="31.9" y2="8.1" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+    sceneSvg:(c)=>`<svg viewBox="0 0 400 220" fill="none"><rect width="400" height="220" rx="12" fill="${c}10"/><circle cx="60" cy="55" r="32" fill="${c}" opacity=".25"/><circle cx="60" cy="55" r="20" fill="${c}" opacity=".5"/><line x1="60" y1="29" x2="60" y2="21" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity=".6"/><line x1="60" y1="89" x2="60" y2="81" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity=".6"/><line x1="26" y1="55" x2="34" y2="55" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity=".6"/><line x1="86" y1="55" x2="94" y2="55" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity=".6"/><rect y="150" width="400" height="70" fill="${c}12"/><rect x="85" y="100" width="70" height="44" rx="4" fill="${c}" opacity=".35" transform="rotate(-12 120 122)"/><rect x="85" y="100" width="70" height="44" rx="4" fill="none" stroke="${c}" stroke-width="1.5" opacity=".5" transform="rotate(-12 120 122)"/><rect x="117" y="144" width="6" height="20" fill="${c}" opacity=".4"/><rect x="175" y="100" width="70" height="44" rx="4" fill="${c}" opacity=".35" transform="rotate(-12 210 122)"/><rect x="175" y="100" width="70" height="44" rx="4" fill="none" stroke="${c}" stroke-width="1.5" opacity=".5" transform="rotate(-12 210 122)"/><rect x="207" y="144" width="6" height="20" fill="${c}" opacity=".4"/><rect x="265" y="100" width="70" height="44" rx="4" fill="${c}" opacity=".35" transform="rotate(-12 300 122)"/><rect x="265" y="100" width="70" height="44" rx="4" fill="none" stroke="${c}" stroke-width="1.5" opacity=".5" transform="rotate(-12 300 122)"/><rect x="297" y="144" width="6" height="20" fill="${c}" opacity=".4"/><path d="M85 80 Q130 60 170 90" stroke="${c}" stroke-width="1.5" stroke-dasharray="4 3" fill="none" opacity=".4"/><path d="M85 80 Q210 55 250 90" stroke="${c}" stroke-width="1.5" stroke-dasharray="4 3" fill="none" opacity=".3"/></svg>`
+  },
+  {
+    tag:"Problema 04", title:"Agricultura Orgânica e Solo Vivo", color:"#86efac",
+    preview:"O Brasil perde 800 milhões de toneladas de solo por erosão a cada ano. Solo saudável produz 2x mais alimentos.",
+    headline:"O solo como aliado: práticas regenerativas que transformam o campo e o ambiente",
+    paragraphs:[
+      "O Brasil perde anualmente cerca de 800 milhões de toneladas de solo fértil devido à erosão provocada por técnicas agrícolas inadequadas. O uso excessivo de agrotóxicos degrada a microbiota do solo, reduzindo sua fertilidade a longo prazo e contaminando lençóis freáticos.",
+      "A agricultura orgânica e regenerativa baseia-se no princípio de que um solo vivo produz mais, com menor custo e sem agredir o meio ambiente. Práticas como plantio direto e compostagem aumentam a matéria orgânica do solo em até 40%."
+    ],
+    stats:[
+      {label:"Solo perdido por erosão anualmente",val:80,disp:"800M t"},
+      {label:"Aumento de produtividade (solo orgânico)",val:40,disp:"40%"},
+      {label:"Redução de custos com insumos",val:35,disp:"35%"},
+      {label:"Crescimento do mercado orgânico (anual)",val:25,disp:"25%"},
+    ],
+    solutions:["Plantio direto para redução da erosão","Adubação verde com leguminosas fixadoras de nitrogênio","Compostagem e biofertilizantes","Controle biológico de pragas","Certificação orgânica e acesso a mercados premium"],
+    iconSvg:`<svg viewBox="0 0 40 40" fill="none"><path d="M20 36V18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M20 22C20 22 12 20 10 12C18 10 22 16 20 22Z" fill="currentColor" opacity=".9"/><path d="M20 28C20 28 28 26 30 18C22 16 18 22 20 28Z" fill="currentColor" opacity=".7"/></svg>`,
+    sceneSvg:(c)=>`<svg viewBox="0 0 400 220" fill="none"><rect width="400" height="220" rx="12" fill="${c}10"/><path d="M0 150 Q200 142 400 150" stroke="${c}40" stroke-width="2" fill="none"/><path d="M0 165 Q200 157 400 165" stroke="${c}30" stroke-width="1" fill="none"/><rect y="155" width="400" height="65" fill="${c}15"/><line x1="40" y1="154" x2="40" y2="128" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity=".7"/><path d="M40 148 C24 140 22 126 32 120 C38 132 42 140 40 148Z" fill="${c}" opacity=".65"/><path d="M40 145 C56 138 58 124 48 118 C42 130 38 138 40 145Z" fill="${c}" opacity=".5"/><line x1="90" y1="154" x2="90" y2="128" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity=".7"/><path d="M90 148 C74 140 72 126 82 120 C88 132 92 140 90 148Z" fill="${c}" opacity=".65"/><path d="M90 145 C106 138 108 124 98 118 C92 130 88 138 90 145Z" fill="${c}" opacity=".5"/><line x1="140" y1="154" x2="140" y2="128" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity=".7"/><path d="M140 148 C124 140 122 126 132 120 C138 132 142 140 140 148Z" fill="${c}" opacity=".65"/><line x1="190" y1="154" x2="190" y2="128" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity=".7"/><path d="M190 145 C206 138 208 124 198 118 C192 130 188 138 190 145Z" fill="${c}" opacity=".5"/><line x1="240" y1="154" x2="240" y2="128" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity=".7"/><path d="M240 148 C224 140 222 126 232 120 C238 132 242 140 240 148Z" fill="${c}" opacity=".65"/><line x1="290" y1="154" x2="290" y2="128" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity=".7"/><path d="M290 145 C306 138 308 124 298 118 C292 130 288 138 290 145Z" fill="${c}" opacity=".5"/><line x1="340" y1="154" x2="340" y2="128" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity=".7"/><path d="M340 148 C324 140 322 126 332 120 C338 132 342 140 340 148Z" fill="${c}" opacity=".65"/><path d="M160 175 Q175 168 190 175 Q205 182 220 175" stroke="rgba(139,90,43,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="350" cy="45" r="25" fill="${c}" opacity=".2"/><circle cx="350" cy="45" r="16" fill="${c}" opacity=".4"/></svg>`
+  },
+  {
+    tag:"Problema 05", title:"Biodiversidade e Polinizadores", color:"#a78bfa",
+    preview:"75% das culturas alimentares dependem da polinização. O colapso das abelhas pode reduzir a produção em 35%.",
+    headline:"A teia da vida: como preservar a biodiversidade garante a segurança alimentar do futuro",
+    paragraphs:[
+      "Aproximadamente 75% das culturas alimentícias do mundo dependem da polinização animal, sendo as abelhas responsáveis por cerca de 80% desse serviço. A perda de habitat e o uso de pesticidas têm provocado um colapso alarmante das populações de polinizadores, com quedas de até 60% em algumas regiões.",
+      "A Região Norte do Brasil abriga mais de 15% de toda a biodiversidade do planeta. Integrar a preservação dessa riqueza à produção agrícola é uma estratégia econômica inteligente: os serviços ecossistêmicos valem mais de R$ 1,8 trilhão por ano para o agronegócio."
+    ],
+    stats:[
+      {label:"Culturas dependentes de polinizadores",val:75,disp:"75%"},
+      {label:"Declínio de abelhas em áreas degradadas",val:60,disp:"60%"},
+      {label:"Biodiversidade mundial na Região Norte",val:15,disp:"15%"},
+      {label:"Aumento de produção com polinização adequada",val:45,disp:"45%"},
+    ],
+    solutions:["Corredores ecológicos ligando fragmentos florestais","Criação de meliponicultura (abelhas nativas sem ferrão)","Bancos de sementes nativas para restauração","Integração Lavoura-Pecuária-Floresta (iLPF)","Monitoramento de espécies-chave com câmeras e IA"],
+    iconSvg:`<svg viewBox="0 0 40 40" fill="none"><ellipse cx="11" cy="14" rx="9" ry="7" fill="currentColor" opacity=".85" transform="rotate(-20 11 14)"/><ellipse cx="29" cy="14" rx="9" ry="7" fill="currentColor" opacity=".85" transform="rotate(20 29 14)"/><ellipse cx="13" cy="27" rx="7" ry="5" fill="currentColor" opacity=".7" transform="rotate(15 13 27)"/><ellipse cx="27" cy="27" rx="7" ry="5" fill="currentColor" opacity=".7" transform="rotate(-15 27 27)"/><path d="M20 8 Q20 20 20 33" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    sceneSvg:(c)=>`<svg viewBox="0 0 400 220" fill="none"><rect width="400" height="220" rx="12" fill="${c}10"/><rect y="140" width="400" height="80" fill="${c}12"/><polygon points="30,102 52,145 8,145" fill="${c}" opacity=".3"/><polygon points="30,118 58,160 2,160" fill="${c}" opacity=".2"/><rect x="26" y="160" width="8" height="18" fill="${c}" opacity=".25"/><polygon points="90,90 112,145 68,145" fill="${c}" opacity=".3"/><polygon points="90,108 120,160 60,160" fill="${c}" opacity=".2"/><rect x="86" y="160" width="8" height="18" fill="${c}" opacity=".25"/><polygon points="160,96 182,148 138,148" fill="${c}" opacity=".3"/><polygon points="160,113 190,162 130,162" fill="${c}" opacity=".2"/><rect x="156" y="162" width="8" height="18" fill="${c}" opacity=".25"/><polygon points="230,88 252,143 208,143" fill="${c}" opacity=".3"/><polygon points="230,106 262,158 198,158" fill="${c}" opacity=".2"/><rect x="226" y="158" width="8" height="18" fill="${c}" opacity=".25"/><polygon points="310,92 332,145 288,145" fill="${c}" opacity=".3"/><polygon points="310,110 340,160 280,160" fill="${c}" opacity=".2"/><rect x="306" y="160" width="8" height="18" fill="${c}" opacity=".25"/><polygon points="370,100 392,148 348,148" fill="${c}" opacity=".3"/><polygon points="370,117 400,160 340,160" fill="${c}" opacity=".2"/><path d="M120 60 Q130 52 140 60" stroke="${c}" stroke-width="2.5" fill="none" opacity=".8"/><path d="M140 60 Q150 54 158 60" stroke="${c}" stroke-width="2.5" fill="none" opacity=".8"/><path d="M250 80 Q258 74 264 80" stroke="${c}" stroke-width="2" fill="none" opacity=".6"/><path d="M264 80 Q270 76 276 80" stroke="${c}" stroke-width="2" fill="none" opacity=".6"/><ellipse cx="190" cy="145" rx="10" ry="7" fill="${c}" opacity=".4"/><ellipse cx="320" cy="95" rx="14" ry="9" fill="${c}" opacity=".5" transform="rotate(-25 320 95)"/><ellipse cx="344" cy="95" rx="14" ry="9" fill="${c}" opacity=".5" transform="rotate(25 344 95)"/><ellipse cx="322" cy="108" rx="10" ry="6" fill="${c}" opacity=".35" transform="rotate(15 322 108)"/><ellipse cx="342" cy="108" rx="10" ry="6" fill="${c}" opacity=".35" transform="rotate(-15 342 108)"/><path d="M332 85 Q332 102 332 115" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/></svg>`
+  },
+  {
+    tag:"Problema 06", title:"Gestão de Resíduos Rurais", color:"#34d399",
+    preview:"O campo gera 4,5 bilhões de kg de embalagens de agrotóxicos por ano. Apenas 48% são corretamente destinados.",
+    headline:"Do lixo ao recurso: como a economia circular transforma resíduos rurais em riqueza",
+    paragraphs:[
+      "A atividade agrícola gera volumes expressivos de resíduos sólidos: embalagens de agrotóxicos, plásticos de silagem e resíduos orgânicos. No Brasil, apenas 48% das embalagens de agrotóxicos têm destino correto; o restante é queimado ou enterrado, contaminando solos e água.",
+      "A economia circular aplicada ao campo transforma esses resíduos em recursos. A compostagem de resíduos orgânicos gera adubo, reduzindo em até 60% o gasto com fertilizantes. O biogás produzido a partir de dejetos animais pode suprir 100% da energia de uma propriedade de médio porte."
+    ],
+    stats:[
+      {label:"Embalagens descartadas corretamente",val:48,disp:"48%"},
+      {label:"Redução de gastos com adubo (compostagem)",val:60,disp:"60%"},
+      {label:"Energia gerada pelo biogás rural",val:100,disp:"100%"},
+      {label:"Redução de emissões com gestão integrada",val:45,disp:"45%"},
+    ],
+    solutions:["Postos de coleta de embalagens de agrotóxicos","Biodigestores para conversão de dejetos em biogás","Compostagem coletiva em assentamentos e cooperativas","Plataformas digitais para rastreio de resíduos","Incentivos fiscais para produtores com gestão exemplar"],
+    iconSvg:`<svg viewBox="0 0 40 40" fill="none"><path d="M20 4L14 14H18V20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 4L26 14H22V20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 26L4 16L13 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 26L14 34L18 26" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M33 26L36 16L27 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M33 26L26 34L22 26" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    sceneSvg:(c)=>`<svg viewBox="0 0 400 220" fill="none"><rect width="400" height="220" rx="12" fill="${c}10"/><rect y="160" width="400" height="60" fill="${c}12"/><path d="M58 120 L34 165 L82 165 Z" fill="#4ade80" opacity=".3" stroke="#4ade80" stroke-width="1.5" opacity=".5"/><rect x="34" y="113" width="48" height="10" rx="3" fill="#4ade80" opacity=".4"/><text x="58" y="148" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="bold" opacity=".9">ORG</text><path d="M148 120 L124 165 L172 165 Z" fill="#3b82f6" opacity=".3" stroke="#3b82f6" stroke-width="1.5" opacity=".5"/><rect x="124" y="113" width="48" height="10" rx="3" fill="#3b82f6" opacity=".4"/><text x="148" y="148" text-anchor="middle" fill="#3b82f6" font-size="9" font-weight="bold" opacity=".9">PAP</text><path d="M238 120 L214 165 L262 165 Z" fill="#facc15" opacity=".3" stroke="#facc15" stroke-width="1.5" opacity=".5"/><rect x="214" y="113" width="48" height="10" rx="3" fill="#facc15" opacity=".4"/><text x="238" y="148" text-anchor="middle" fill="#facc15" font-size="9" font-weight="bold" opacity=".9">MET</text><path d="M328 120 L304 165 L352 165 Z" fill="#f97316" opacity=".3" stroke="#f97316" stroke-width="1.5" opacity=".5"/><rect x="304" y="113" width="48" height="10" rx="3" fill="#f97316" opacity=".4"/><text x="328" y="148" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold" opacity=".9">PLS</text><path d="M82 145 Q106 130 120 145" stroke="rgba(255,255,255,.2)" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/><path d="M172 145 Q196 130 210 145" stroke="rgba(255,255,255,.2)" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/><path d="M262 145 Q286 130 300 145" stroke="rgba(255,255,255,.2)" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/><circle cx="370" cy="40" r="18" fill="${c}" opacity=".15" stroke="${c}" stroke-width="1.5" opacity=".4"/><path d="M360 40 L367 47 L382 30" stroke="${c}" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".8"/></svg>`
+  }
+];
+
+/* ── RENDER BLOCKS ─────────────────────────────────────────── */
+function createBlock(data, index) {
+  const el = document.createElement('div');
+  el.className = 'block';
+  el.tabIndex = 0;
+  el.setAttribute('role','button');
+  el.setAttribute('aria-expanded','false');
+  el.style.borderColor = data.color + '40';
+
+  const statsHtml = data.stats.map(s => `
+    <div class="bstat">
+      <span class="bstat-label">${s.label}</span>
+      <div class="bstat-bar-wrap">
+        <div class="bstat-bar" style="background:${data.color}" data-val="${Math.min(s.val,100)}"></div>
+      </div>
+      <span class="bstat-val" style="color:${data.color}">${s.disp}</span>
+    </div>`).join('');
+
+  const solHtml = data.solutions.map(s =>
+    `<li><span class="chk" style="color:${data.color}">✓</span>${s}</li>`
+  ).join('');
+
+  el.innerHTML = `
+    <div class="block-inner">
+      <div class="block-header">
+        <div class="block-icon" style="background:${data.color}15;color:${data.color}">
+          ${data.iconSvg}
+        </div>
+        <div>
+          <span class="block-tag" style="color:${data.color}">${data.tag}</span>
+          <div class="block-title">${data.title}</div>
+        </div>
+      </div>
+      <p class="block-preview">${data.preview}</p>
+      <div class="block-hint" style="color:${data.color}">
+        <span class="arrow">▶</span>
+        <span class="hint-text">Clique para explorar soluções</span>
+      </div>
+      <div class="block-content">
+        <div class="block-divider"></div>
+        <div class="block-headline">${data.headline}</div>
+        <div class="block-body">
+          <div class="block-text">
+            ${data.paragraphs.map(p=>`<p>${p}</p>`).join('')}
+            <div class="block-stats">${statsHtml}</div>
+          </div>
+          <div>
+            <div class="block-scene">${data.sceneSvg(data.color)}</div>
+            <div class="solutions-title" style="color:${data.color}">Soluções Propostas</div>
+            <ul class="solutions">${solHtml}</ul>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  let open = false;
+  function toggle() {
+    open = !open;
+    el.classList.toggle('open', open);
+    el.setAttribute('aria-expanded', open);
+    el.querySelector('.hint-text').textContent = open ? 'Fechar' : 'Clique para explorar soluções';
+    el.style.borderColor = open ? data.color : data.color + '40';
+    el.style.boxShadow = open ? `0 0 0 1px ${data.color}30, 0 20px 60px ${data.color}18` : '';
+    el.style.background = open ? data.color + '14' : 'rgba(255,255,255,.04)';
+    if(open) {
+      setTimeout(() => {
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        el.querySelectorAll('.bstat-bar').forEach(bar => {
+          bar.style.width = bar.dataset.val + '%';
+        });
+      }, 80);
+    } else {
+      el.querySelectorAll('.bstat-bar').forEach(bar => { bar.style.width = '0'; });
+    }
+  }
+  el.addEventListener('click', toggle);
+  el.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); toggle(); } });
+  return el;
+}
+
+const grid = document.getElementById('blocksGrid');
+BLOCKS.forEach((b,i) => grid.appendChild(createBlock(b,i)));
+</script>
+<script src="https://replit-cdn.com/replit-pill/replit-pill.global.js" data-repl-id="f89beb0b-6180-4fe4-95a8-ef5ce430e26a"></script></body>
+</html>
